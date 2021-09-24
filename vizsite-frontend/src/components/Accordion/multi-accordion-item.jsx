@@ -8,7 +8,6 @@ import {
 } from '@chakra-ui/react';
 
 export default function MultiAccordionItems({ accordionItems = [] }) {
-  console.log(accordionItems);
   return (
     <>
       {accordionItems.map(
