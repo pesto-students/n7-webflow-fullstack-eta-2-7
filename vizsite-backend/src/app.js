@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://vizsite-56474.firebaseio.com" // TODO - Change to your Firebase URL
@@ -23,9 +24,15 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-app.use('/sites',sites(db));
-app.use('/projects',projects(db));
+app.use((req, res, next) => {
+  req.db = db;
+  next();    
+
+})
+
+app.use('/sites',sites);
+app.use('/projects',projects);
 
 app.listen(3001, function () {
-    console.log('Express server listening on port 3000');
+    console.log('Express server listening on port 3001');
 });

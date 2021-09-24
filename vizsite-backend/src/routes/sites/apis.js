@@ -1,25 +1,33 @@
 import { Router } from "express";
 
-const sites =  Router();
+const sites = Router();
 
-export const sitesApi = (db)=>{
 
-        sites.get("/", (req, res) => {
-                res.send("get sites");
-                })
-        .post("/", (req, res) => {
-                res.send("post sites");  
+
+sites.get("/", async(req, res) => {
+        let result = await req.db.collection("sites").get();
+        let  resultArray = [];
+        result = result.forEach(doc => {
+                resultArray.push(doc.data());
+        });              
+        res.status("200").json(resultArray);   
+})
+        .post("/", async(req, res) => {
+                let Site = req.body;
+                Site._id = uuidv4();
+                const siteId = uuidv4();
+                await req.db.collection("sites").doc(siteId).set(Site);
+                res.status("201").json(Site);  
         })
-        .put("/:id", (req, res) => {
-                res.send("put sites");
+        .put("/:id", async(req, res) => {
+                const result = await req.db.collection("sites").doc(_id).set(Project);
+                res.status("200").json(result);  
         })
-        .delete("/:id", (req, res) => {
-                res.send("delete sites");
+        .delete("/:id", async(req, res) => {
+                const result =  await req.db.collection("sites").doc({_id: req.params.id}).delete();
+                res.status("200").json(result); 
         });
 
-        return sites;
-}
 
 
-
-// export default sites;
+export default sites;
