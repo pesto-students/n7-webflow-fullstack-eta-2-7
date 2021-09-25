@@ -4,7 +4,6 @@ import {
 } from '@chakra-ui/react';
 
 export default function Layout() {
-  console.log('Somet');
   return (
     <>
       <FormControl id="display">

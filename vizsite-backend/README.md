@@ -1,4 +1,4 @@
-# Vizsite frontend
+# Vizsite backend
 
 ## Available Scripts
 

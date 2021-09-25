@@ -18,7 +18,7 @@ const Login = () => {
   const auth = useAuth();
   const { user, signinWithGoogle } = auth;
   if (user) {
-    return <div>{user.displayName}</div>;
+    return <div>{user.name}</div>;
   }
   return (
     <Box

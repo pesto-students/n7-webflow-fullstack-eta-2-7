@@ -5,12 +5,9 @@ import firebase from 'firebase';
 export default function ImageUpload() {
   const [file, setFile] = useState('');
   const [url, setUrl] = useState('');
-  // storageRef.put(file).then((snapshot) => {
-  //   console.log('Uploaded a blob or file!');
-  // });
+
   const handleUpload = useCallback(
     async () => {
-      console.log(file);
       const storageRef = firebase.storage().ref();
       const uploadTask = await storageRef.child(file.name).put(file);
       const uploadedImageUrl = await uploadTask.ref.getDownloadURL();
