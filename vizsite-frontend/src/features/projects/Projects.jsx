@@ -7,28 +7,26 @@ import { useSelector } from 'react-redux';
 import { getAllProjectsQuery } from './Store/queries';
 import ProjectCards from './Components/ProjectCards';
 import { getAllProjects } from './Store/selectors';
+import ProjectsSkeletion from './ProjectsSkeletion';
 
 export default function Projects() {
   const projects = useSelector(getAllProjects) || [];
   const [
     {
       isPending,
-      isFinished,
     },
   ] = useRequest(getAllProjectsQuery);
-  console.log(projects);
-  console.log(isPending, isFinished, process.env, projects);
 
   return (
-    <Stack alignItems="center" mt="8">
-      <Stack maxW="8xl">
+    <Stack my="8" px="36">
+      <Stack>
         <Flex justifyContent="flex-end">
           <Button as="a" href="/app/projects/new">
             Add Project
           </Button>
         </Flex>
-        <SimpleGrid columns="3" gap="8">
-          <ProjectCards projects={projects} />
+        <SimpleGrid columns="3" gap="12">
+          {isPending ? <ProjectsSkeletion /> : <ProjectCards projects={projects} />}
         </SimpleGrid>
       </Stack>
     </Stack>
