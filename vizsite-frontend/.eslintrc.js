@@ -1,4 +1,5 @@
 module.exports = {
+  parser: 'babel-eslint',
   env: {
     browser: true,
     es2021: true,
@@ -28,5 +29,7 @@ module.exports = {
     'react/prop-types': 0,
     'react/jsx-props-no-spreading': 0,
     'jsx-a11y/aria-role': 0,
+    'import/prefer-default-export': 0,
+    'template-curly-spacing': ['error', 'never'],
   },
 };

@@ -15,10 +15,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://vizsite-56474.firebaseio.com', // TODO - Change to your Firebase URL
+  databaseURL: 'https://vizsite-56474.firebaseio.com',
 });
 
 const db = admin.firestore();
+
+app.use(async (req, res, next) => {
+  try {
+    const accessToken = req.headers.authorization.split('Bearer ')[1];
+    const decodedToken = await admin.auth().verifyIdToken(accessToken);
+    req.user = decodedToken;
+    next();
+  } catch (err) {
+    res.status(401).json({ error: 'Unauthorized' });
+  }
+});
 
 app.use((req, res, next) => {
   req.db = db;

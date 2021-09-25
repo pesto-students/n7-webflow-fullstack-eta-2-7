@@ -16,23 +16,26 @@ const formatUser = (user) => ({
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+  const handleSetUser = (loggedInUser) => {
+    if (loggedInUser) {
+      const formattedUser = formatUser(loggedInUser);
+      const { token } = formattedUser;
+      localStorage.setItem('token', token);
+      setUser(formattedUser);
+    } else {
+      setUser(null);
+    }
+  };
+
   useEffect(() => {
-    const unsubscribe = app.auth().onAuthStateChanged(
-      (loggedInUser) => {
-        if (loggedInUser) {
-          setUser(formatUser(loggedInUser));
-        } else {
-          setUser(null);
-        }
-      },
-    );
+    const unsubscribe = app.auth().onAuthStateChanged(handleSetUser);
     return unsubscribe;
   }, []);
   const signinWithGoogle = () => app
     .auth()
     .signInWithPopup(new firebase.auth.GoogleAuthProvider())
     .then((response) => {
-      setUser(formatUser(response.user));
+      handleSetUser(response.user);
     });
 
   return (

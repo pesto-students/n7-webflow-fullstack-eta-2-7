@@ -6,6 +6,7 @@ const createRoutes = () => {
   const Features = React.lazy(() => import('features/index'));
   const Hirearchy = React.lazy(() => import('features-poc/hirearchy'));
   const ImageUpload = React.lazy(() => import('features-poc/image-upload'));
+
   return (
     <>
       <Route path="/login" component={Login} />
