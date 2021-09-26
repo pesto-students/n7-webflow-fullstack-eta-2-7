@@ -10,6 +10,7 @@ const createRoutes = () => {
 
   return (
     <>
+      <Route exact path="/" component={Login} />
       <Route path="/login" component={Login} />
       <Route path="/hirearchy" component={Hirearchy} />
       <Route path="/image-upload" component={ImageUpload} />
