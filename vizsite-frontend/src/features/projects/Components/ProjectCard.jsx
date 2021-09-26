@@ -11,16 +11,26 @@ import {
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import { IoIosDownload } from 'react-icons/io';
 import { MdOpenInNew } from 'react-icons/md';
+import { useHistory } from 'react-router-dom';
+import { formatRelative } from 'date-fns';
 
 const IMAGE = 'https://cdn.dribbble.com/users/1790221/screenshots/16495125/media/df81965b4e534ab9b00522f8aafae4d2.png';
 
-export default function ProjectCard({ name }) {
+export default function ProjectCard({
+  name, siteId, updatedAt, createdAt,
+}) {
+  const history = useHistory();
+
+  const siteLink = `/app/editor/${siteId}`;
+
+  const handleOpenProject = () => {
+    history.push(siteLink);
+  };
+
   return (
     <Stack
       role="group"
       p={6}
-      // maxW="330px"
-      // w="full"
       bg={useColorModeValue('white', 'gray.800')}
       boxShadow="2xl"
       rounded="lg"
@@ -30,7 +40,7 @@ export default function ProjectCard({ name }) {
         <IconButton variant="ghost">
           <IoIosDownload fontSize="24px" />
         </IconButton>
-        <IconButton variant="ghost">
+        <IconButton variant="ghost" onClick={handleOpenProject}>
           <MdOpenInNew fontSize="20px" />
         </IconButton>
         <IconButton variant="ghost">
@@ -69,7 +79,7 @@ export default function ProjectCard({ name }) {
         />
       </Box>
       <Stack pt={10} align="left" fontSize="sm">
-        <Heading fontSize="lg" fontFamily="body" fontWeight="semibold">
+        <Heading fontSize="lg" fontFamily="body" fontWeight="semibold" onClick={handleOpenProject} as="a" href={siteLink}>
           {name}
         </Heading>
         <Stack direction="row" justifyContent="space-between">
@@ -77,7 +87,7 @@ export default function ProjectCard({ name }) {
             Created at
           </Text>
           <Text color="gray.600">
-            11th Jan 2021
+            {formatRelative(new Date(), new Date(createdAt))}
           </Text>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
@@ -85,7 +95,7 @@ export default function ProjectCard({ name }) {
             Last modfiied
           </Text>
           <Text color="gray.600">
-            11th Jan 2021
+            {formatRelative(new Date(), new Date(updatedAt))}
           </Text>
         </Stack>
       </Stack>

@@ -6,8 +6,16 @@ export const createProject = async ({ db, user, Project }) => {
   const { name } = Project || {};
   const projectId = uuidv4();
   const { _id: siteId } = await createSite(db, { siteObj: {} });
+  const currentTime = new Date().toString();
   const newProject = {
-    name, siteId, _id: projectId, uid, authorName, picture,
+    name,
+    siteId,
+    _id: projectId,
+    uid,
+    authorName,
+    picture,
+    updatedAt: currentTime,
+    createdAt: currentTime,
   };
   Project.authorId = await db.collection('projects').doc(projectId).set(newProject);
   return newProject;

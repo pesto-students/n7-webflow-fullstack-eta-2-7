@@ -8,7 +8,7 @@ const createRoutes = () => {
 
   return (
     <>
-      <Route exact path="/app/editor" component={Editor} />
+      <Route exact path="/app/editor/:id" component={Editor} />
       <Route exact path="/app/projects" component={Projects} />
       <Route exact path="/app/projects/new" component={CreateProject} />
     </>
