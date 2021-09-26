@@ -10,15 +10,17 @@ import {
 import * as React from 'react';
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
 import { useAuth } from 'lib/auth';
+import { useHistory } from 'react-router-dom';
 import Card from './Card';
 import DividerWithText from './DividerWithText';
 import LoginForm from './LoginForm';
 
 const Login = () => {
+  const history = useHistory();
   const auth = useAuth();
   const { user, signinWithGoogle } = auth;
-  if (user) {
-    return <div>{user.name}</div>;
+  if (user?.name) {
+    history.push('/app/projects');
   }
   return (
     <Box
@@ -36,7 +38,6 @@ const Login = () => {
         </Heading>
         <Text mt="4" mb="8" align="center" maxW="md" fontWeight="medium">
           <Text as="span">Don&apos;t have an account?</Text>
-          {/* <Link href="#">Start free trial</Link> */}
         </Text>
         <Card>
           <LoginForm />

@@ -16,7 +16,6 @@ const formatUser = (user) => ({
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
   const handleSetUser = (loggedInUser) => {
     if (loggedInUser) {
       const formattedUser = formatUser(loggedInUser);
@@ -44,8 +43,21 @@ export const AuthProvider = ({ children }) => {
       console.log(error);
     });
 
+  const signOut = async () => {
+    try {
+      await firebase.auth().signOut();
+      localStorage.removeItem('token');
+      // signed out
+    } catch (e) {
+      // an error
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, signinWithGoogle, authLoading: loading }}>
+    <AuthContext.Provider value={{
+      user, signinWithGoogle, authLoading: loading, signOut,
+    }}
+    >
       {children}
     </AuthContext.Provider>
   );

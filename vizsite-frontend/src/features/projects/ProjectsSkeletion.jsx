@@ -11,7 +11,7 @@ export default function ProjectsSkeletion() {
   return (
     <>
       {
-      data.map(() => <ProjectSkeletonCard />)
+      data.map((item, index) => <ProjectSkeletonCard key={index} />)
     }
     </>
   );

@@ -31,5 +31,6 @@ module.exports = {
     'jsx-a11y/aria-role': 0,
     'import/prefer-default-export': 0,
     'template-curly-spacing': ['error', 'never'],
+    'react/no-array-index-key': 0,
   },
 };
