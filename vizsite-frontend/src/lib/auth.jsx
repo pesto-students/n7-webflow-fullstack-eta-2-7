@@ -15,6 +15,7 @@ const formatUser = (user) => ({
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const handleSetUser = (loggedInUser) => {
     if (loggedInUser) {
@@ -22,7 +23,9 @@ export const AuthProvider = ({ children }) => {
       const { token } = formattedUser;
       localStorage.setItem('token', token);
       setUser(formattedUser);
+      setLoading(false);
     } else {
+      setLoading(false);
       setUser(null);
     }
   };
@@ -36,10 +39,13 @@ export const AuthProvider = ({ children }) => {
     .signInWithPopup(new firebase.auth.GoogleAuthProvider())
     .then((response) => {
       handleSetUser(response.user);
+    }).catch((error) => {
+      setLoading(false);
+      console.log(error);
     });
 
   return (
-    <AuthContext.Provider value={{ user, signinWithGoogle }}>
+    <AuthContext.Provider value={{ user, signinWithGoogle, authLoading: loading }}>
       {children}
     </AuthContext.Provider>
   );

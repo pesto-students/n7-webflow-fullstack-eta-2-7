@@ -2,7 +2,8 @@ import { FIREBASE_DB_PROJECT, STATUS_CODE_CREATED, STATUS_CODE_SUCCESS } from '.
 import { createProject } from './services';
 
 export const getAllProjectsController = async (req, res) => {
-  const result = await req.db.collection(FIREBASE_DB_PROJECT).get();
+  const { uid } = req.user;
+  const result = await req.db.collection(FIREBASE_DB_PROJECT).get({ uid });
   const resultArray = [];
   result.forEach((doc) => {
     resultArray.push(doc.data());

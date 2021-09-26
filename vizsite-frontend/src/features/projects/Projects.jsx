@@ -25,7 +25,7 @@ export default function Projects() {
             Add Project
           </Button>
         </Flex>
-        <SimpleGrid columns="3" gap="12">
+        <SimpleGrid columns={{ lg: '3', md: '2', sm: '1' }} gap="12">
           {isPending ? <ProjectsSkeletion /> : <ProjectCards projects={projects} />}
         </SimpleGrid>
       </Stack>
