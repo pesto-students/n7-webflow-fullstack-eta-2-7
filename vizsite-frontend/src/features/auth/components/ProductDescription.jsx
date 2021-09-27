@@ -25,7 +25,7 @@ export default function ProductDescription({ children }) {
               Get Started
             </Button>
           </Box>
-          <Image src={`${window.location.origin}/assests/images/project-screenshot.png`} />
+          <Image src={`${window.location.origin}/assets/images/project-screenshot.png`} />
         </Stack>
       </Stack>
       <Stack width="50%" alignItems="center" justifyContent="center">{children}</Stack>
