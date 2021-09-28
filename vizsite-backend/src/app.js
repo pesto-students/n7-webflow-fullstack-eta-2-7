@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import admin from 'firebase-admin';
 import { sites, projects } from './routes/index';
+import { STATUS_CODE_UNAUTHORIZED } from './common/constants';
 
 require('dotenv').config();
 
@@ -15,10 +16,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://vizsite-56474.firebaseio.com', // TODO - Change to your Firebase URL
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
 });
 
 const db = admin.firestore();
+
+app.use(async (req, res, next) => {
+  try {
+    const accessToken = req.headers.authorization.split('Bearer ')[1];
+    const decodedToken = await admin.auth().verifyIdToken(accessToken);
+    req.user = decodedToken;
+    next();
+  } catch (err) {
+    res.status(STATUS_CODE_UNAUTHORIZED).json({ error: 'Unauthorized' });
+  }
+});
 
 app.use((req, res, next) => {
   req.db = db;
