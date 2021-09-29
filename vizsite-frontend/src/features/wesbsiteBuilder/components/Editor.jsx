@@ -14,12 +14,13 @@ const style = {
   width: '100%',
   marginRight: '1.5rem',
   marginBottom: '1.5rem',
-  color: 'white',
+  color: 'black',
   padding: '50px',
   paddingTop: '5px',
   textAlign: 'center',
   fontSize: '1rem',
   lineHeight: 'normal',
+  border: '1px dashed black',
 };
 export default function Editor(props) {
   const {
@@ -39,7 +40,7 @@ export default function Editor(props) {
       isOverCurrent: monitor.isOver({ shallow: true }),
     }),
   }), [greedy]);
-  let backgroundColor = 'black';
+  let backgroundColor = 'white';
   if (isOverCurrent || (isOver && greedy)) {
     backgroundColor = 'darkgreen';
   }

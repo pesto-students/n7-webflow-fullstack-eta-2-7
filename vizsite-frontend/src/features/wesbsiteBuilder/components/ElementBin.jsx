@@ -8,14 +8,14 @@ function getStyle(backgroundColor) {
   return {
     minHeight: '2rem',
     minWidth: '8rem',
-    color: 'white',
+    color: 'black',
     backgroundColor,
     padding: '1rem',
     margin: '5px',
     textAlign: 'center',
     float: 'left',
     fontSize: '1rem',
-    border: '1px dashed white',
+    border: '1px dashed black',
   };
 }
 
@@ -39,7 +39,7 @@ const ElementBin = (props) => {
     }),
   }), [greedy]);
   const text = greedy ? 'greedy' : 'not greedy';
-  let backgroundColor = 'rgba(0, 0, 0, .5)';
+  let backgroundColor = 'white';
   if (isOverCurrent || (isOver && greedy)) {
     backgroundColor = 'darkgreen';
   }
