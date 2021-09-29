@@ -23,7 +23,7 @@ export default function WebsiteBuilder() {
           <ViewerContainer views={views} setView={setView} />
         </Box>
         <Box flex={1} boxShadow="lg" bg="white" mt="2" flexShrink="1" p="2">
-          {view === 'build' ? <HtmlContainer node={node} setNode={setNode} /> : <Hirearchy />}
+          {view === 'build' ? <HtmlContainer /> : <Hirearchy />}
         </Box>
         <Box flex={3} flexShrink="2" p="2">
           <Editor node={node} setNode={setNode} />

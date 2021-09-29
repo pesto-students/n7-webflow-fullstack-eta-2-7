@@ -2,8 +2,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { useDrop } from 'react-dnd';
+import Monaco from '@monaco-editor/react';
+
 import { ItemTypes } from './ItemTypes';
-import CodeEditor from './CodeEditor';
 import { insertNode, getNodeByType, getCodeFromNode } from './helpers';
 import ElementBin from './ElementBin';
 
@@ -45,22 +46,27 @@ export default function Editor(props) {
 
   useEffect(() => {
   }, [node]);
-  function MiscY(data) {
+  function getElementBin(data) {
     const {
       value, label, type, children,
     } = data;
     return (
       <ElementBin id={value} node={node} setNode={setNode} value={value} type={type} label={label}>
-        {children?.length && children.map((item) => MiscY(item))}
+        {children?.length && children.map((item) => getElementBin(item))}
       </ElementBin>
     );
   }
   return (
     <>
       <div id="1" greedy={false} ref={drop} role="Dustbin" style={{ ...style, backgroundColor }}>
-        {MiscY(node)}
+        {getElementBin(node)}
       </div>
-      <CodeEditor content={getCodeFromNode(node, '')} />
+      <Monaco
+        height="26%"
+        theme="vs-dark"
+        language="html"
+        value={getCodeFromNode(node, '')}
+      />
     </>
   );
 }

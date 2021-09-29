@@ -18,31 +18,30 @@ import ColumnsIcon from 'icons/Columns';
 import SidebarIcon from 'icons/Sidebar';
 import HtmlElementsContainer from './HtmlElmentsContainer';
 
-export default function HtmlContainer(props) {
-  const { setNode } = props;
-  const elements = [
-    { title: 'Button', label: 'Button', type: 'button', icon: <ButtonIcon />, setNode, elementKey: 'BUTTON', properties: { text: 'Submit' } },
-    { title: 'Text', label: 'Text', type: 'text', icon: <BsTextCenter size="32px" />, setNode, elementKey: 'TEXT', properties: { text: 'Hello!!!' } },
-    { title: 'Image', label: 'Image', type: 'img', icon: <BiImageAlt size="32px" />, setNode, elementKey: 'IMAGE', properties: { text: 'Submit', properties: { src: './cat.jpg', alt: 'cat' } } },
-    { title: 'List', label: 'List', type: 'ul', icon: <AiOutlineUnorderedList size="32px" />, setNode, elementKey: 'LIST', properties: { items: ['item1', 'item2', 'item3'] } },
-    { title: 'ListItem', label: 'List Item', type: 'li', icon: <ListItemIcon />, setNode, elementKey: 'LIST_ITEM', properties: { text: 'Hello, this is a list item!!!' } },
-    { title: 'Input', label: 'Input', type: 'input', icon: <InputIcon />, setNode, elementKey: 'INPUT', properties: { placeHolder: 'input Text' } },
-    { title: 'Table', label: 'Table', type: 'table', icon: <BsTable size="32px" />, setNode, elementKey: 'TABLE', properties: { headers: ['Column1', 'Column2', 'Column3'], rowValues: [['item00', 'item01', 'item02'], ['item10', 'item11', 'item12'], ['item20', 'item21', 'item22']] } },
-  ];
+const elements = [
+  { title: 'Button', label: 'Button', type: 'button', icon: <ButtonIcon />, elementKey: 'BUTTON', properties: { text: 'Submit' } },
+  { title: 'Text', label: 'Text', type: 'text', icon: <BsTextCenter size="32px" />, elementKey: 'TEXT', properties: { text: 'Hello!!!' } },
+  { title: 'Image', label: 'Image', type: 'img', icon: <BiImageAlt size="32px" />, elementKey: 'IMAGE', properties: { text: 'Submit', properties: { src: './cat.jpg', alt: 'cat' } } },
+  { title: 'List', label: 'List', type: 'ul', icon: <AiOutlineUnorderedList size="32px" />, elementKey: 'LIST', properties: { items: ['item1', 'item2', 'item3'] } },
+  { title: 'ListItem', label: 'List Item', type: 'li', icon: <ListItemIcon />, elementKey: 'LIST_ITEM', properties: { text: 'Hello, this is a list item!!!' } },
+  { title: 'Input', label: 'Input', type: 'input', icon: <InputIcon />, elementKey: 'INPUT', properties: { placeHolder: 'input Text' } },
+  { title: 'Table', label: 'Table', type: 'table', icon: <BsTable size="32px" />, elementKey: 'TABLE', properties: { headers: ['Column1', 'Column2', 'Column3'], rowValues: [['item00', 'item01', 'item02'], ['item10', 'item11', 'item12'], ['item20', 'item21', 'item22']] } },
+];
 
-  const components = [
-    { title: 'Grid', icon: <GridIcon /> },
-    { title: 'Column', icon: <ColumnsIcon /> },
-    { title: 'Rows', icon: <RowsIcon /> },
-    { title: 'Form', icon: <FormIcon /> },
-    { title: 'Header', icon: <HeadingIcon /> },
-    { title: 'Sidebar', icon: <SidebarIcon /> },
-  ];
+const components = [
+  { title: 'Grid', icon: <GridIcon /> },
+  { title: 'Column', icon: <ColumnsIcon /> },
+  { title: 'Rows', icon: <RowsIcon /> },
+  { title: 'Form', icon: <FormIcon /> },
+  { title: 'Header', icon: <HeadingIcon /> },
+  { title: 'Sidebar', icon: <SidebarIcon /> },
+];
 
-  const tabs = ['Elements', 'Components'];
-  const tabPanels = [<HtmlElementsContainer elements={elements} />,
-    <HtmlElementsContainer elements={components} />];
+const tabs = ['Elements', 'Components'];
+const tabPanels = [<HtmlElementsContainer elements={elements} />,
+  <HtmlElementsContainer elements={components} />];
 
+export default function HtmlContainer() {
   return (
     <Tabs colorScheme="brand" variant="solid-rounded" size="sm" color="gray.100">
       <TabList>

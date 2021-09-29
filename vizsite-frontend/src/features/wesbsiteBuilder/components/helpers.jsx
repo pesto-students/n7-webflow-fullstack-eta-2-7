@@ -3,36 +3,21 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export const getNodeByType = (type) => {
-  if (type === 'div') {
-    return { value: uuidv4(), type: 'div', label: 'Div' };
-  }
-  if (type === 'text') {
-    return { value: uuidv4(), type: 'text', label: 'Text' };
-  }
-  if (type === 'img') {
-    return { value: uuidv4(), type: 'img', label: 'Image' };
-  }
-  if (type === 'input') {
-    return { value: uuidv4(), type: 'input', label: 'Input' };
-  }
-  if (type === 'button') {
-    return { value: uuidv4(), type: 'button', label: 'Button' };
-  }
-  if (type === 'ul') {
-    return { value: uuidv4(), type: 'ul', label: 'List' };
-  }
-  if (type === 'li') {
-    return { value: uuidv4(), type: 'li', label: 'List Item' };
-  }
-  if (type === 'table') {
-    return { value: uuidv4(), type: 'table', label: 'Table' };
-  }
-  return null;
+  const nodes = {
+    text: { type: 'text', label: 'Text' },
+    img: { type: 'img', label: 'Image' },
+    input: { type: 'input', label: 'Input' },
+    button: { type: 'button', label: 'Button' },
+    ul: { type: 'ul', label: 'List' },
+    li: { type: 'li', label: 'List Item' },
+    table: { type: 'table', label: 'Table' },
+  };
+  return { value: uuidv4(), ...nodes[type] };
 };
 
 export const getCodeFromNode = (node, result) => {
   if (!node.children) {
-    result = `<${node.type} id = '${node.label}'>${result}</${node.type}>`;
+    result = `<${node.type} id = '${node.label}'>\n${result ? `\n${result}\n` : ''}</${node.type}>`;
     return result;
   }
   let temp = '';
@@ -40,7 +25,7 @@ export const getCodeFromNode = (node, result) => {
     temp += getCodeFromNode(node.children[i], result);
   }
 
-  return `<${node.type} id = '${node.label}'>${temp}</${node.type}>`;
+  return `<${node.type} id = '${node.label}'>${temp ? `\n${temp}\n` : ''}</${node.type}>`;
 };
 
 export const insertNode = (jsonTree, node, parentId) => {
