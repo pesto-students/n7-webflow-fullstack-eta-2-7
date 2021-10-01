@@ -19,22 +19,22 @@ import SidebarIcon from 'icons/Sidebar';
 import HtmlElementsContainer from './HtmlElmentsContainer';
 
 const elements = [
-  { title: 'Button', label: 'Button', type: 'button', icon: <ButtonIcon /> },
-  { title: 'Text', label: 'Text', type: 'text', icon: <BsTextCenter size="32px" /> },
-  { title: 'Image', label: 'Image', type: 'img', icon: <BiImageAlt size="32px" /> },
-  { title: 'List', label: 'List', type: 'ul', icon: <AiOutlineUnorderedList size="32px" /> },
-  { title: 'ListItem', label: 'List Item', type: 'li', icon: <ListItemIcon /> },
-  { title: 'Input', label: 'Input', type: 'input', icon: <InputIcon /> },
-  { title: 'Table', label: 'Table', type: 'table', icon: <BsTable size="32px" /> },
+  { title: 'Button', type: 'button', icon: <ButtonIcon />, elementType: 'ELEMENT' },
+  { title: 'Text', type: 'text', icon: <BsTextCenter size="32px" />, elementType: 'ELEMENT' },
+  { title: 'Image', type: 'img', icon: <BiImageAlt size="32px" />, elementType: 'ELEMENT' },
+  { title: 'List', type: 'ul', icon: <AiOutlineUnorderedList size="32px" />, elementType: 'ELEMENT' },
+  { title: 'ListItem', type: 'li', icon: <ListItemIcon />, elementType: 'ELEMENT' },
+  { title: 'Input', type: 'input', icon: <InputIcon />, elementType: 'ELEMENT' },
+  { title: 'Table', type: 'table', icon: <BsTable size="32px" />, elementType: 'ELEMENT' },
 ];
 
 const components = [
-  { title: 'Grid', icon: <GridIcon /> },
-  { title: 'Column', icon: <ColumnsIcon /> },
-  { title: 'Rows', icon: <RowsIcon /> },
-  { title: 'Form', icon: <FormIcon /> },
-  { title: 'Header', icon: <HeadingIcon /> },
-  { title: 'Sidebar', icon: <SidebarIcon /> },
+  { title: 'Grid', type: 'grid', icon: <GridIcon />, elementType: 'COMPONENT' },
+  { title: 'Columns', type: 'columns', icon: <ColumnsIcon />, elementType: 'COMPONENT' },
+  { title: 'Rows', type: 'rows', icon: <RowsIcon />, elementType: 'COMPONENT' },
+  { title: 'Form', type: 'form', icon: <FormIcon />, elementType: 'COMPONENT' },
+  { title: 'Header', type: 'header', icon: <HeadingIcon />, elementType: 'COMPONENT' },
+  { title: 'Sidebar', type: 'sidebar', icon: <SidebarIcon />, elementType: 'COMPONENT' },
 ];
 
 const tabs = ['Elements', 'Components'];

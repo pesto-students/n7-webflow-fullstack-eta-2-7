@@ -4,11 +4,11 @@ import { useDrop } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
 import { insertNode, getNodeByType } from './helpers';
 
-function getStyle(backgroundColor) {
+function getStyle(backgroundColor, color) {
   return {
     minHeight: '2rem',
     minWidth: '8rem',
-    color: 'black',
+    color,
     backgroundColor,
     padding: '1rem',
     margin: '5px',
@@ -40,13 +40,15 @@ const ElementBin = (props) => {
   }), [greedy]);
   const text = greedy ? 'greedy' : 'not greedy';
   let backgroundColor = 'white';
+  let color = 'black';
   if (isOverCurrent || (isOver && greedy)) {
     backgroundColor = 'darkgreen';
+    color = 'white';
   }
   return (
     <>
       {value !== '1' && (
-      <div greedy={false} ref={drop} role="Dustbin" style={getStyle(backgroundColor)}>
+      <div greedy={false} ref={drop} role="Dustbin" style={getStyle(backgroundColor, color)}>
         {label}
         <div>{children}</div>
       </div>
