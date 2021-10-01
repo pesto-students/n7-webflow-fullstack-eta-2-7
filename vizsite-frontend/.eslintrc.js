@@ -32,5 +32,6 @@ module.exports = {
     'import/prefer-default-export': 0,
     'template-curly-spacing': ['error', 'never'],
     'react/no-array-index-key': 0,
+    'linebreak-style': 0,
   },
 };
