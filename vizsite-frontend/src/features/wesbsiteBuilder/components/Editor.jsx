@@ -1,8 +1,10 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDrop } from 'react-dnd';
 import Monaco from '@monaco-editor/react';
+import { Button } from '@chakra-ui/react';
 
 import { ItemTypes } from './ItemTypes';
 import { insertNode, getNodeByType, getCodeFromNode } from './helpers';
@@ -26,6 +28,7 @@ export default function Editor(props) {
   const {
     node, setNode, greedy,
   } = props;
+  const [isEditorView, setIsEditorView] = useState(true);
   const [{ isOver, isOverCurrent }, drop] = useDrop(() => ({
     accept: ItemTypes.BOX,
     drop(item, monitor) {
@@ -59,9 +62,12 @@ export default function Editor(props) {
   }
   return (
     <>
-      <div id="1" greedy={false} ref={drop} role="Dustbin" style={{ ...style, backgroundColor }}>
-        {getElementBin(node)}
-      </div>
+      <Button style={{ marginLeft: '35%' }} onClick={() => setIsEditorView(!isEditorView)}>Toggle View</Button>
+      {isEditorView ? (
+        <div id="1" greedy={false} ref={drop} role="Dustbin" style={{ ...style, backgroundColor }}>
+          {getElementBin(node)}
+        </div>
+      ) : <div style={{ ...style, backgroundColor }} dangerouslySetInnerHTML={{ __html: getCodeFromNode(node, '') }} />}
       <Monaco
         height="26%"
         theme="vs-dark"
