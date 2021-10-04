@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/button-has-type */
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
@@ -26,7 +27,7 @@ const style = {
 };
 export default function Editor(props) {
   const {
-    node, setNode, greedy,
+    node, setNode, greedy, handleCurrentNodeSelected,
   } = props;
   const [isEditorView, setIsEditorView] = useState(true);
   const [{ isOver, isOverCurrent }, drop] = useDrop(() => ({
@@ -45,19 +46,23 @@ export default function Editor(props) {
   }), [greedy]);
   let backgroundColor = 'white';
   if (isOverCurrent || (isOver && greedy)) {
-    backgroundColor = 'darkgreen';
+    backgroundColor = 'l';
   }
 
   useEffect(() => {
   }, [node]);
   function getElementBin(data) {
     const {
-      value, label, type, children,
+      value, label, type, children, stylesObj = {},
     } = data;
     return (
-      <ElementBin id={value} node={node} setNode={setNode} value={value} type={type} label={label}>
-        {children?.length && children.map((item) => getElementBin(item))}
-      </ElementBin>
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+      <div onClick={(e) => { handleCurrentNodeSelected(e, data); }}>
+        <ElementBin id={value} node={node} setNode={setNode} value={value} type={type} label={label} stylesObj={stylesObj}>
+          {children?.length && children.map((item) => getElementBin(item))}
+        </ElementBin>
+      </div>
     );
   }
   return (

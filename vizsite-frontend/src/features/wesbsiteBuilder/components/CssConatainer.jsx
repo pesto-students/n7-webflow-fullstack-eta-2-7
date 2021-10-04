@@ -11,7 +11,7 @@ import Backgrounds from './backgrounds';
 import Border from './border';
 import Effect from './effect';
 
-export default function Demo({ applyStyles }) {
+export default function Demo({ applyStyles, selectedNodeStylesObj, handleStlyeObjChange }) {
   const tools = [
     'Layout',
     'Spacing',
@@ -25,13 +25,13 @@ export default function Demo({ applyStyles }) {
     <Text key={tool}>{tool}</Text>
   ));
   const cssInputComponents = [
-    <Layout key="layout" />,
-    <Spacing key="spacing" />,
-    <Size key="size" />,
-    <Typography key="typography" />,
-    <Backgrounds key="backgrounds" />,
-    <Border key="border" />,
-    <Effect key="effect" />,
+    <Layout key="layout" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
+    <Spacing key="spacing" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
+    <Size key="size" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
+    <Typography key="typography" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
+    <Backgrounds key="backgrounds" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
+    <Border key="border" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
+    <Effect key="effect" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
   ];
 
   const accordionItems = cssInputComponentButton.map((item, index) => (
