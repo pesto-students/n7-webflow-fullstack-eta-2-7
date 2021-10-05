@@ -1,6 +1,7 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-param-reassign */
 import { v4 as uuidv4 } from 'uuid';
+import randomString from 'randomstring';
 
 export const getNodeByType = (type) => {
   const nodes = {
@@ -215,7 +216,6 @@ export const getCodeFromNode = (node, result) => {
   for (let i = 0; i < node.children.length; i++) {
     temp += getCodeFromNode(node.children[i], result);
   }
-
   return `<${node.type} ${node.properties ? JSON.stringify(node.properties)
     .replace('{', '')
     .replace('}', '')
@@ -239,4 +239,42 @@ export const insertNode = (jsonTree, node, parentId) => {
   }
 
   return jsonTree;
+};
+
+export const getCodeFromNodeForDownload = (node, result, style) => {
+  if (!node.children) {
+    let className;
+    if (node.styles) {
+      className = `vizsite-css-${randomString.generate()}`;
+      style += `.${className} {
+        ${node.styles}
+      }`;
+    }
+
+    result = `
+      <${node.type}' ${className ? `class=${className}` : ''}>
+          ${node.betweenTags ? `${node.betweenTags}\n` : ''}${result ? `\n${result}\n` : ''}
+      </${node.type}>`;
+
+    return { result, style };
+  }
+  let temp = '';
+  for (let i = 0; i < node.children.length; i++) {
+    const res = getCodeFromNodeForDownload(node.children[i], result, style);
+    temp = res.result;
+    style = res.style;
+  }
+  let className;
+  if (node.styles) {
+    className = `vizsite-css-${randomString.generate()}`;
+    style += `.${className} {
+      ${node.styles}
+    }`;
+  }
+  const result1 = `
+  <${node.type}' ${className ? `class=${className}` : ''}>
+      ${node.betweenTags ? `${node.betweenTags}\n` : ''}${temp ? `\n${temp}\n` : ''}
+  </${node.type}>`;
+
+  return { result1, style };
 };

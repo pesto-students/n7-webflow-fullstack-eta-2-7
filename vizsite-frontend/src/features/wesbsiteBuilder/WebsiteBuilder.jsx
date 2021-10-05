@@ -49,8 +49,10 @@ export default function WebsiteBuilder() {
   };
 
   const handleStyleObjChange = ({ e, key }) => {
-    currentStyleObj[key] = e.target.value;
-    setCurrentStyleObj({ ...currentStyleObj });
+    if (currentStyleObj) {
+      currentStyleObj[key] = e.target.value;
+      setCurrentStyleObj({ ...currentStyleObj });
+    }
   };
 
   console.log(currentStyleObj, node);
