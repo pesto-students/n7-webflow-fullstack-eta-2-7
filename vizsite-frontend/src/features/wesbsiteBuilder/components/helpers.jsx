@@ -261,7 +261,7 @@ export const getCodeFromNodeForDownload = (node, result, style) => {
   let temp = '';
   for (let i = 0; i < node.children.length; i++) {
     const res = getCodeFromNodeForDownload(node.children[i], result, style);
-    temp = res.result;
+    temp += res.result;
     style = res.style;
   }
   let className;
@@ -271,10 +271,12 @@ export const getCodeFromNodeForDownload = (node, result, style) => {
       ${node.styles}
     }`;
   }
-  const result1 = `
+
+  return {
+    result: `
   <${node.type}' ${className ? `class=${className}` : ''}>
       ${node.betweenTags ? `${node.betweenTags}\n` : ''}${temp ? `\n${temp}\n` : ''}
-  </${node.type}>`;
-
-  return { result1, style };
+  </${node.type}>`,
+    style,
+  };
 };
