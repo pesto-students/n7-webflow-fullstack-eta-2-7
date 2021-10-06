@@ -98,7 +98,6 @@ export const getNodeByType = (type) => {
       children: [{
         type: 'div',
         label: 'Div',
-        betweenTags: 'Sample Text',
         value: uuidv4(),
         styles: {
           padding: '10px',
@@ -107,7 +106,6 @@ export const getNodeByType = (type) => {
       {
         type: 'div',
         label: 'Div',
-        betweenTags: 'Sample Text',
         value: uuidv4(),
         styles: {
           padding: '10px',
@@ -116,7 +114,6 @@ export const getNodeByType = (type) => {
       {
         type: 'div',
         label: 'Div',
-        betweenTags: 'Sample Text',
         value: uuidv4(),
         styles: {
           padding: '10px',
@@ -129,19 +126,16 @@ export const getNodeByType = (type) => {
       children: [{
         type: 'div',
         label: 'Div',
-        betweenTags: 'Sample Text',
         value: uuidv4(),
       },
       {
         type: 'div',
         label: 'Div',
-        betweenTags: 'Sample Text',
         value: uuidv4(),
       },
       {
         type: 'div',
         label: 'Div',
-        betweenTags: 'Sample Text',
         value: uuidv4(),
       }],
     },
@@ -151,7 +145,7 @@ export const getNodeByType = (type) => {
       children: [{
         type: 'label',
         label: 'Label',
-        betweenTags: 'Sample Text',
+        betweenTags: 'Email',
         value: uuidv4(),
       },
       {
@@ -163,6 +157,9 @@ export const getNodeByType = (type) => {
         type: 'input',
         label: 'Input',
         value: uuidv4(),
+        styles: {
+          border: '2px solid blue',
+        },
       },
       {
         type: 'br',
@@ -172,7 +169,7 @@ export const getNodeByType = (type) => {
       {
         type: 'label',
         label: 'Label',
-        betweenTags: 'Sample Text',
+        betweenTags: 'Password',
         value: uuidv4(),
       },
       {
@@ -184,6 +181,10 @@ export const getNodeByType = (type) => {
         type: 'input',
         label: 'Input',
         value: uuidv4(),
+        styles: {
+          border: '2px solid blue',
+          padding: '10px',
+        },
       },
       {
         type: 'br',
@@ -195,7 +196,16 @@ export const getNodeByType = (type) => {
         label: 'Input',
         value: uuidv4(),
         properties: { type: 'submit' },
+        styles: {
+          background: 'blue',
+          padding: '10px',
+          color: 'white',
+        },
       }],
+      styles: {
+        'text-align': 'left',
+        color: 'blue',
+      },
     },
     header: {
       type: 'div',
