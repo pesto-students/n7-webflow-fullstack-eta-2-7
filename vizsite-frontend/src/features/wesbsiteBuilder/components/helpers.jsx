@@ -92,13 +92,15 @@ export const getNodeByType = (type) => {
     columns: {
       type: 'div',
       label: 'Columns',
+      styles: {
+        display: 'flex',
+      },
       children: [{
         type: 'div',
         label: 'Div',
         betweenTags: 'Sample Text',
         value: uuidv4(),
         styles: {
-          float: 'left',
           padding: '10px',
         },
       },
@@ -108,7 +110,6 @@ export const getNodeByType = (type) => {
         betweenTags: 'Sample Text',
         value: uuidv4(),
         styles: {
-          float: 'left',
           padding: '10px',
         },
       },
@@ -118,7 +119,6 @@ export const getNodeByType = (type) => {
         betweenTags: 'Sample Text',
         value: uuidv4(),
         styles: {
-          float: 'left',
           padding: '10px',
         },
       }],
@@ -196,6 +196,135 @@ export const getNodeByType = (type) => {
         value: uuidv4(),
         properties: { type: 'submit' },
       }],
+    },
+    header: {
+      type: 'div',
+      label: 'Header',
+      styles: {
+        position: 'sticky',
+        top: '0',
+        display: 'flex',
+        'justify-content': 'space-between',
+        'align-items': 'center',
+        padding: '10px',
+        background: 'blue',
+        color: 'white',
+      },
+      children: [{
+        type: 'div',
+        label: 'Div',
+        betweenTags: 'Logo',
+        value: uuidv4(),
+        styles: {
+          padding: '10px',
+        },
+      },
+      {
+        type: 'div',
+        label: 'Div',
+        value: uuidv4(),
+        children: [
+          {
+            type: 'div',
+            label: 'Div',
+            betweenTags: 'Home',
+            value: uuidv4(),
+            styles: {
+              padding: '10px',
+            },
+          },
+          {
+            type: 'div',
+            label: 'Div',
+            betweenTags: 'About',
+            value: uuidv4(),
+            styles: {
+              padding: '10px',
+            },
+          },
+          {
+            type: 'div',
+            label: 'Div',
+            betweenTags: 'Work',
+            value: uuidv4(),
+            styles: {
+              padding: '10px',
+            },
+          },
+          {
+            type: 'div',
+            label: 'Div',
+            betweenTags: 'Contact us',
+            value: uuidv4(),
+            styles: {
+              padding: '10px',
+            },
+          },
+        ],
+        styles: {
+          display: 'flex', 'justify-content': 'space-between', padding: '10px',
+        },
+      }],
+    },
+    sidebar: {
+      type: 'div',
+      label: 'Sidebar',
+      styles: {
+        display: 'flex',
+        'flex-direction': 'column',
+        padding: '10px',
+        background: 'blue',
+        color: 'white',
+        height: '100vh',
+        width: '15vw',
+      },
+      children: [{
+        type: 'div',
+        label: 'Div',
+        betweenTags: 'Logo',
+        value: uuidv4(),
+        styles: {
+          padding: '10px',
+        },
+      },
+      {
+        type: 'div',
+        label: 'Div',
+        betweenTags: 'Dashboard',
+        value: uuidv4(),
+        styles: {
+          padding: '10px',
+        },
+      },
+      {
+        type: 'div',
+        label: 'Div',
+        betweenTags: 'Users',
+        value: uuidv4(),
+        styles: {
+          padding: '10px',
+        },
+      },
+      {
+        type: 'div',
+        label: 'Div',
+        betweenTags: 'Products',
+        value: uuidv4(),
+        styles: {
+          padding: '10px',
+        },
+      },
+      {
+        type: 'div',
+        label: 'Div',
+        betweenTags: 'Orders',
+        value: uuidv4(),
+        styles: {
+          padding: '10px',
+        },
+      },
+
+      ],
     },
   };
   return { value: uuidv4(), ...nodes[type] };
