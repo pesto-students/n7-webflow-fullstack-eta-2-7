@@ -21,16 +21,19 @@ export default function WebsiteBuilder() {
   const [selectedNode, setSelectedNode] = useState({});
   const [selectedNodeEle, setSelectedNodeEle] = useState(null);
   const [currentStyleObj, setCurrentStyleObj] = useState({});
+  const [currentAttributeObj, setCurrentAttributeObj] = useState({});
 
   useEffect(() => {
-    const { stylesObj } = selectedNode;
+    const { stylesObj, attributes } = selectedNode;
     setCurrentStyleObj({ ...stylesObj } || {});
+    setCurrentAttributeObj({ ...attributes } || {});
   }, [selectedNode]);
 
   const handleApplyStyles = () => {
     const styleString = reactToCSS(currentStyleObj);
     selectedNode.styles = styleString;
     selectedNode.stylesObj = currentStyleObj;
+    selectedNode.attributes = currentAttributeObj;
     const nodeString = JSON.stringify(node);
     setNode(JSON.parse(nodeString));
   };
@@ -55,7 +58,12 @@ export default function WebsiteBuilder() {
     }
   };
 
-  console.log(currentStyleObj, node);
+  const handleAttributeChange = ({ value, key }) => {
+    if (currentAttributeObj) {
+      currentAttributeObj[key] = value;
+      setCurrentAttributeObj({ ...currentAttributeObj });
+    }
+  };
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -76,8 +84,10 @@ export default function WebsiteBuilder() {
         <Box flex={1} boxShadow="lg" bg="white" mt="2" p="2" overflowY="scroll">
           <CssConatainer
             selectedNodeStylesObj={currentStyleObj || {}}
+            selectedNodeAttributes={currentAttributeObj || {}}
             applyStyles={handleApplyStyles}
             handleStlyeObjChange={handleStyleObjChange}
+            handleAttributeChange={handleAttributeChange}
           />
         </Box>
       </Stack>

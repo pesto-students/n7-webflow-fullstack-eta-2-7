@@ -10,8 +10,12 @@ import Typography from './typography';
 import Backgrounds from './backgrounds';
 import Border from './border';
 import Effect from './effect';
+import Attributes from './attributes';
 
-export default function Demo({ applyStyles, selectedNodeStylesObj, handleStlyeObjChange }) {
+export default function Demo({
+  applyStyles, selectedNodeStylesObj,
+  handleStlyeObjChange, selectedNodeAttributes, handleAttributeChange,
+}) {
   const tools = [
     'Layout',
     'Spacing',
@@ -20,11 +24,13 @@ export default function Demo({ applyStyles, selectedNodeStylesObj, handleStlyeOb
     'Backgrounds',
     'Border',
     'Effect',
+    'Attributes',
   ];
   const cssInputComponentButton = tools.map((tool) => (
     <Text key={tool}>{tool}</Text>
   ));
   const cssInputComponents = [
+    <Attributes key="attributes" currentAttributes={selectedNodeAttributes} handleAttributeChange={handleAttributeChange} />,
     <Layout key="layout" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
     <Spacing key="spacing" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
     <Size key="size" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
