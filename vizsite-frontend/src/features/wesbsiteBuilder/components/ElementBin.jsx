@@ -4,24 +4,23 @@ import { useDrop } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
 import { insertNode, getNodeByType } from './helpers';
 
-function getStyle(backgroundColor, color) {
+function getStyle(styles) {
   return {
     minHeight: '2rem',
     minWidth: '8rem',
-    color,
-    backgroundColor,
     padding: '1rem',
     margin: '5px',
     textAlign: 'center',
     float: 'left',
     fontSize: '1rem',
     border: '1px dashed black',
+    ...styles,
   };
 }
 
 const ElementBin = (props) => {
   const {
-    label, value, node, setNode, greedy, children,
+    label, value, node, setNode, greedy, children, stylesObj,
   } = props;
 
   const [{ isOver, isOverCurrent }, drop] = useDrop(() => ({
@@ -48,7 +47,7 @@ const ElementBin = (props) => {
   return (
     <>
       {value !== '1' && (
-      <div greedy={false} ref={drop} role="Dustbin" style={getStyle(backgroundColor, color)}>
+      <div greedy={false} ref={drop} role="Dustbin" style={getStyle({ backgroundColor, color, ...stylesObj })}>
         {label}
         <div>{children}</div>
       </div>
