@@ -1,11 +1,10 @@
-/* eslint-disable react/button-has-type */
 /* eslint-disable max-len */
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useDrop } from 'react-dnd';
 import Monaco from '@monaco-editor/react';
 import { Button } from '@chakra-ui/react';
-
+import { useMutation } from 'redux-query-react';
+import { saveCodeMutation } from '../Store/queries';
 import { ItemTypes } from './ItemTypes';
 import { insertNode, getNodeByType, getCodeFromNode } from './helpers';
 import ElementBin from './ElementBin';
@@ -24,10 +23,16 @@ const style = {
   lineHeight: 'normal',
   border: '1px dashed black',
 };
+
 export default function Editor(props) {
   const {
-    node, setNode, greedy,
+    node, setNode, greedy, fileId,
   } = props;
+  const [{ isPending, isFinished }, saveCode] = useMutation((data) => saveCodeMutation(data, fileId));
+  console.log({ isPending, isFinished });
+  const onSave = (data) => {
+    saveCode(data);
+  };
   const [isEditorView, setIsEditorView] = useState(true);
   const [{ isOver, isOverCurrent }, drop] = useDrop(() => ({
     accept: ItemTypes.BOX,
@@ -68,6 +73,7 @@ export default function Editor(props) {
           {getElementBin(node)}
         </div>
       ) : <div style={{ ...style, backgroundColor }} dangerouslySetInnerHTML={{ __html: getCodeFromNode(node, '') }} />}
+      <Button style={{ float: 'right' }} onClick={() => onSave(getCodeFromNode(node, ''))}>Save</Button>
       <Monaco
         height="26%"
         theme="vs-dark"

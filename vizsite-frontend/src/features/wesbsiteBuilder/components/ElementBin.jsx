@@ -47,13 +47,13 @@ const ElementBin = (props) => {
   }
   return (
     <>
-      {value !== '1' && (
+      {(value).toString() !== '1' && (
       <div greedy={false} ref={drop} role="Dustbin" style={getStyle(backgroundColor, color)}>
         {label}
         <div>{children}</div>
       </div>
       )}
-      {value === '1' && (
+      {(value).toString() === '1' && (
         <>
           <p>Drop Here</p>
           <div>{children}</div>
