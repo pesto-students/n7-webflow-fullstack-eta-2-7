@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 import {
   Box,
@@ -17,10 +18,9 @@ import { formatRelative } from 'date-fns';
 const IMAGE = 'https://cdn.dribbble.com/users/1790221/screenshots/16495125/media/df81965b4e534ab9b00522f8aafae4d2.png';
 
 export default function ProjectCard({
-  name, siteId, updatedAt, createdAt,
+  name, siteId, fileLink, createdAt, updatedAt,
 }) {
   const history = useHistory();
-
   const siteLink = `/app/editor/${siteId}`;
 
   const handleOpenProject = () => {
@@ -38,7 +38,7 @@ export default function ProjectCard({
     >
       <Stack justifyContent="flex-end" direction="row">
         <IconButton variant="ghost">
-          <IoIosDownload fontSize="24px" />
+          <a href={fileLink}><IoIosDownload fontSize="24px" /></a>
         </IconButton>
         <IconButton variant="ghost" onClick={handleOpenProject}>
           <MdOpenInNew fontSize="20px" />

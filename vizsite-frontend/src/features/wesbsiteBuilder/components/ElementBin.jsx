@@ -52,7 +52,7 @@ const ElementBin = (props) => {
         <div>{children}</div>
       </div>
       )}
-      {value === '1' && (
+      {(value).toString() === '1' && (
         <>
           <p>Drop Here</p>
           <div>{children}</div>

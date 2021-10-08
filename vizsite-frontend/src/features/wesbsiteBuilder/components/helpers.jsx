@@ -347,8 +347,8 @@ export const getCodeFromNode = (node, result) => {
       .replace('}', '')
       .replaceAll(':', '=')
       .replaceAll(',', ' ')
-      .replaceAll('"', '') : ''} id = '${node.value}' style = "${node.styles ? JSON.stringify(node.styles).replace('{', '').replace('}', '').replaceAll('"', '')
-      .replaceAll(',', ';') : ''}" >\n${node.betweenTags ? `${node.betweenTags}\n` : ''}${result ? `\n${result}\n` : ''}</${node.type}>`;
+      .replaceAll('"', '') : ''} id = '${node.value}' style = '${node.styles ? JSON.stringify(node.styles).replace('{', '').replace('}', '').replaceAll('"', '')
+      .replaceAll(',', ';') : ''}' >\n${node.betweenTags ? `${node.betweenTags}\n` : ''}${result ? `\n${result}\n` : ''}</${node.type}>`;
     return result;
   }
   let temp = '';
@@ -360,8 +360,8 @@ export const getCodeFromNode = (node, result) => {
     .replace('}', '')
     .replaceAll(':', '=')
     .replaceAll(',', ' ')
-    .replaceAll('"', '') : ''}  id = '${node.value}' style = "${node.styles ? JSON.stringify(node.styles).replace('{', '').replace('}', '').replaceAll('"', '')
-    .replaceAll(',', ';') : ''}">${node.betweenTags ? `${node.betweenTags}\n` : ''}${temp ? `\n${temp}\n` : ''}</${node.type}>`;
+    .replaceAll('"', '') : ''}  id = '${node.value}' style = '${node.styles ? JSON.stringify(node.styles).replace('{', '').replace('}', '').replaceAll('"', '')
+    .replaceAll(',', ';') : ''}'>${node.betweenTags ? `${node.betweenTags}\n` : ''}${temp ? `\n${temp}\n` : ''}</${node.type}>`;
 };
 
 export const insertNode = (jsonTree, node, parentId) => {
