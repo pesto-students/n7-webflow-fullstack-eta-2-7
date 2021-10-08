@@ -80,12 +80,13 @@ export default function WebsiteBuilder() {
           <ViewerContainer views={views} setView={setView} />
         </Box>
         <Box flex={1} boxShadow="lg" bg="white" mt="2" p="2">
-          {view === 'build' ? <HtmlContainer /> : <Hirearchy  node={node} setNode={setNode}/>}
+          {view === 'build' ? <HtmlContainer /> : <Hirearchy node={node} setNode={setNode} />}
         </Box>
         <Box flex={3} p="2">
           <Editor
             node={node}
             setNode={setNode}
+            fileId={fileId}
             handleCurrentNodeSelected={handleCurrentNodeSelected}
           />
         </Box>
