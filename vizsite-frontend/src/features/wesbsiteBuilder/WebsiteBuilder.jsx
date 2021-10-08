@@ -1,10 +1,13 @@
 /* eslint-disable no-param-reassign */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Stack, Box } from '@chakra-ui/react';
 import { CgListTree } from 'react-icons/cg';
 import { AiTwotoneBuild } from 'react-icons/ai';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { useRequest } from 'redux-query-react';
+import { useParams } from 'react-router-dom';
 
 import reactToCSS from 'react-style-object-to-css';
 import HtmlContainer from './components/HtmlContainer';
@@ -12,12 +15,26 @@ import CssConatainer from './components/CssConatainer';
 import Editor from './components/Editor';
 import ViewerContainer from './components/ViewerContainer';
 import Hirearchy from './components/HirearchyViewer';
+import { getProjectByIdQuery } from './Store/queries';
+import { getProject } from './Store/selectors';
 
 const views = [{ icon: <AiTwotoneBuild />, label: 'build' }, { icon: <CgListTree />, label: 'hirearchy' }];
 
 export default function WebsiteBuilder() {
+  const { id } = useParams();
+  const project = useSelector(getProject);
+  useRequest(getProjectByIdQuery(id));
   const [view, setView] = React.useState(views[0].label);
   const [node, setNode] = useState({ value: '1', type: 'body', label: 'root' });
+  const [fileId, setFileId] = useState();
+  console.log(fileId);
+
+  useEffect(() => {
+    if (project) {
+      setNode(project.site.siteObj);
+      setFileId(project.site.fileId);
+    }
+  }, [project]);
   const [selectedNode, setSelectedNode] = useState({});
   const [selectedNodeEle, setSelectedNodeEle] = useState(null);
   const [currentStyleObj, setCurrentStyleObj] = useState({});
@@ -72,7 +89,7 @@ export default function WebsiteBuilder() {
           <ViewerContainer views={views} setView={setView} />
         </Box>
         <Box flex={1} boxShadow="lg" bg="white" mt="2" p="2">
-          {view === 'build' ? <HtmlContainer /> : <Hirearchy />}
+          {view === 'build' ? <HtmlContainer /> : <Hirearchy node={node} setNode={setNode} />}
         </Box>
         <Box flex={3} p="2">
           <Editor

@@ -30,7 +30,6 @@ export default function Demo({
     <Text key={tool}>{tool}</Text>
   ));
   const cssInputComponents = [
-    <Attributes key="attributes" currentAttributes={selectedNodeAttributes} handleAttributeChange={handleAttributeChange} />,
     <Layout key="layout" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
     <Spacing key="spacing" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
     <Size key="size" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
@@ -38,6 +37,7 @@ export default function Demo({
     <Backgrounds key="backgrounds" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
     <Border key="border" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
     <Effect key="effect" currentStylesObj={selectedNodeStylesObj} handleStlyeObjChange={handleStlyeObjChange} />,
+    <Attributes key="attributes" currentAttributes={selectedNodeAttributes} handleAttributeChange={handleAttributeChange} />,
   ];
 
   const accordionItems = cssInputComponentButton.map((item, index) => (

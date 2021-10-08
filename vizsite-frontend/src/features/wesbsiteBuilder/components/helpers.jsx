@@ -341,7 +341,6 @@ export const getNodeByType = (type) => {
 };
 
 export const getCodeFromNode = (node, result) => {
-  console.log(Object.keys(node?.attributes || {}), node);
   if (!node.children) {
     result = `<${node.type} 
     ${node?.attributes ? Object.keys(node?.attributes).map((a) => `${a}="${node.attributes[a]}"`).join(' ')
