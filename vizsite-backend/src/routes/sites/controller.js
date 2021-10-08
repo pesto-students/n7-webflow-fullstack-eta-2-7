@@ -11,8 +11,8 @@ export const getAllSitesController = async (req, res) => {
 };
 
 export const createSiteController = async (req, res) => {
-  const Site = req.body;
-  await createSite(req.db, Site);
+  const { Site, fileId } = req.body;
+  await createSite(req.db, Site, fileId);
   res.status(STATUS_CODE_CREATED).json(Site);
 };
 

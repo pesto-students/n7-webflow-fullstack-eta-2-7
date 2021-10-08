@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable object-curly-newline */
 import {
   Tabs, TabList, TabPanels, Tab, TabPanel,
 } from '@chakra-ui/react';
@@ -16,30 +18,30 @@ import ColumnsIcon from 'icons/Columns';
 import SidebarIcon from 'icons/Sidebar';
 import HtmlElementsContainer from './HtmlElmentsContainer';
 
+const elements = [
+  { title: 'Button', type: 'button', icon: <ButtonIcon />, elementType: 'ELEMENT' },
+  { title: 'Text', type: 'text', icon: <BsTextCenter size="32px" />, elementType: 'ELEMENT' },
+  { title: 'Image', type: 'img', icon: <BiImageAlt size="32px" />, elementType: 'ELEMENT' },
+  { title: 'List', type: 'ul', icon: <AiOutlineUnorderedList size="32px" />, elementType: 'ELEMENT' },
+  { title: 'ListItem', type: 'li', icon: <ListItemIcon />, elementType: 'ELEMENT' },
+  { title: 'Input', type: 'input', icon: <InputIcon />, elementType: 'ELEMENT' },
+  { title: 'Table', type: 'table', icon: <BsTable size="32px" />, elementType: 'ELEMENT' },
+];
+
+const components = [
+  { title: 'Grid', type: 'grid', icon: <GridIcon />, elementType: 'COMPONENT' },
+  { title: 'Columns', type: 'columns', icon: <ColumnsIcon />, elementType: 'COMPONENT' },
+  { title: 'Rows', type: 'rows', icon: <RowsIcon />, elementType: 'COMPONENT' },
+  { title: 'Form', type: 'form', icon: <FormIcon />, elementType: 'COMPONENT' },
+  { title: 'Header', type: 'header', icon: <HeadingIcon />, elementType: 'COMPONENT' },
+  { title: 'Sidebar', type: 'sidebar', icon: <SidebarIcon />, elementType: 'COMPONENT' },
+];
+
+const tabs = ['Elements', 'Components'];
+const tabPanels = [<HtmlElementsContainer elements={elements} />,
+  <HtmlElementsContainer elements={components} />];
+
 export default function HtmlContainer() {
-  const elements = [
-    { title: 'Button', icon: <ButtonIcon /> },
-    { title: 'Text', icon: <BsTextCenter size="32px" /> },
-    { title: 'Image', icon: <BiImageAlt size="32px" /> },
-    { title: 'List', icon: <AiOutlineUnorderedList size="32px" /> },
-    { title: 'ListItem', icon: <ListItemIcon /> },
-    { title: 'Input', icon: <InputIcon /> },
-    { title: 'Table', icon: <BsTable size="32px" /> },
-  ];
-
-  const components = [
-    { title: 'Grid', icon: <GridIcon /> },
-    { title: 'Column', icon: <ColumnsIcon /> },
-    { title: 'Rows', icon: <RowsIcon /> },
-    { title: 'Form', icon: <FormIcon /> },
-    { title: 'Header', icon: <HeadingIcon /> },
-    { title: 'Sidebar', icon: <SidebarIcon /> },
-  ];
-
-  const tabs = ['Elements', 'Components'];
-  const tabPanels = [<HtmlElementsContainer elements={elements} />,
-    <HtmlElementsContainer elements={components} />];
-
   return (
     <Tabs colorScheme="brand" variant="solid-rounded" size="sm" color="gray.100">
       <TabList>

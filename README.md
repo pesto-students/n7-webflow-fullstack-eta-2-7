@@ -21,14 +21,14 @@ a website builder will mainly contain 3 components
 
 **Elements** are all basic HTML elements which are
 
-1. <div>
-2. <span>
-3. <p>
+1. div
+2. span
+3. p
 4. button,input,form,textarea
-5. <h1>,<h2>,<h3>,<h4>,<h5>,<h6>
-6. <table>,<tr>,<th>,<td>
-7. <ul>,<ol>,<li>
-8. <nav>,<main>,<article>
+5. h1-h6
+6. table,th,tr,td
+7. ul,ol,li
+8. nav,main,article
 
 **Components** are repetitive website parts that can contain prebuilt HTML elements with CSS
 

@@ -17,7 +17,7 @@ const LoginForm = (props) => (
         <Input name="email" type="email" autoComplete="email" required />
       </FormControl>
       <PasswordField />
-      <Button type="submit" colorScheme="blue" size="lg" fontSize="md">
+      <Button type="submit" size="lg" fontSize="md">
         Sign in
       </Button>
     </Stack>
