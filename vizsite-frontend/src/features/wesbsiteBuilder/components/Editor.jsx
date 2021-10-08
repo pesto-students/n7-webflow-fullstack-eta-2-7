@@ -38,7 +38,6 @@ export default function Editor(props) {
     node, setNode, greedy, fileId, handleCurrentNodeSelected,
   } = props;
   const [{ isPending, isFinished }, saveCode] = useMutation((data) => saveCodeMutation(data, fileId));
-  console.log({ isPending, isFinished });
   const onSave = (data) => {
     saveCode(data);
   };
@@ -81,9 +80,7 @@ export default function Editor(props) {
 
   const handleDownload = useCallback(
     () => {
-      console.log(node);
       const code = getCodeFromNodeForDownload(node, '', '');
-      console.log(code);
     },
     [node],
   );

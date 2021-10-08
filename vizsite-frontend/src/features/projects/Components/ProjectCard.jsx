@@ -87,7 +87,7 @@ export default function ProjectCard({
             Created at
           </Text>
           <Text color="gray.600">
-            {formatRelative(new Date(), new Date(createdAt))}
+            {createdAt ? formatRelative(new Date(), new Date(createdAt)) : ''}
           </Text>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
@@ -95,7 +95,7 @@ export default function ProjectCard({
             Last modfiied
           </Text>
           <Text color="gray.600">
-            {formatRelative(new Date(), new Date(updatedAt))}
+            {createdAt ? formatRelative(new Date(), new Date(updatedAt)) : ''}
           </Text>
         </Stack>
       </Stack>

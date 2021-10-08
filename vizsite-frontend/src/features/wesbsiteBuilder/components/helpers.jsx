@@ -195,7 +195,7 @@ export const getNodeByType = (type) => {
         type: 'input',
         label: 'Input',
         value: uuidv4(),
-        properties: { type: 'submit' },
+        attributes: { type: 'submit' },
         styles: {
           background: 'blue',
           padding: '10px',
@@ -342,26 +342,22 @@ export const getNodeByType = (type) => {
 
 export const getCodeFromNode = (node, result) => {
   if (!node.children) {
-    result = `<${node.type} ${node.properties ? JSON.stringify(node.properties)
-      .replace('{', '')
-      .replace('}', '')
-      .replaceAll(':', '=')
-      .replaceAll(',', ' ')
-      .replaceAll('"', '') : ''} id = '${node.value}' style = '${node.styles ? JSON.stringify(node.styles).replace('{', '').replace('}', '').replaceAll('"', '')
-      .replaceAll(',', ';') : ''}' >\n${node.betweenTags ? `${node.betweenTags}\n` : ''}${result ? `\n${result}\n` : ''}</${node.type}>`;
+    result = `<${node.type} 
+    ${node?.attributes ? Object.keys(node?.attributes).map((a) => `${a}="${node.attributes[a]}"`).join(' ')
+    : ''} 
+      id = '${node.value}' style = "${node.styles ? JSON.stringify(node.styles).replace('{', '').replace('}', '').replaceAll('"', '')
+  .replaceAll(',', ';') : ''}" >\n${node.betweenTags ? `${node.betweenTags}\n` : ''}${result ? `\n${result}\n` : ''}</${node.type}>`;
     return result;
   }
   let temp = '';
   for (let i = 0; i < node.children.length; i++) {
     temp += getCodeFromNode(node.children[i], result);
   }
-  return `<${node.type} ${node.properties ? JSON.stringify(node.properties)
-    .replace('{', '')
-    .replace('}', '')
-    .replaceAll(':', '=')
-    .replaceAll(',', ' ')
-    .replaceAll('"', '') : ''}  id = '${node.value}' style = '${node.styles ? JSON.stringify(node.styles).replace('{', '').replace('}', '').replaceAll('"', '')
-    .replaceAll(',', ';') : ''}'>${node.betweenTags ? `${node.betweenTags}\n` : ''}${temp ? `\n${temp}\n` : ''}</${node.type}>`;
+  return `<${node.type}  
+  ${node?.attributes ? Object.keys(node?.attributes).map((a) => `${a}="${node.attributes[a]}"`).join(' ')
+    : ''} 
+    id = '${node.value}' style = "${node.styles ? JSON.stringify(node.styles).replace('{', '').replace('}', '').replaceAll('"', '')
+  .replaceAll(',', ';') : ''}">${node.betweenTags ? `${node.betweenTags}\n` : ''}${temp ? `\n${temp}\n` : ''}</${node.type}>`;
 };
 
 export const insertNode = (jsonTree, node, parentId) => {
