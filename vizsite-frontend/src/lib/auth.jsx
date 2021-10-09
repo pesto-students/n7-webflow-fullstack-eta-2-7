@@ -43,6 +43,16 @@ export const AuthProvider = ({ children }) => {
       console.log(error);
     });
 
+  const signinWithEmail = ({ email, password }) => app
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((response) => {
+      handleSetUser(response.user);
+    }).catch((error) => {
+      setLoading(false);
+      console.log(error);
+    });
+
   const signOut = async () => {
     try {
       await firebase.auth().signOut();
@@ -55,7 +65,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{
-      user, signinWithGoogle, authLoading: loading, signOut,
+      user, signinWithGoogle, authLoading: loading, signOut, signinWithEmail,
     }}
     >
       {children}

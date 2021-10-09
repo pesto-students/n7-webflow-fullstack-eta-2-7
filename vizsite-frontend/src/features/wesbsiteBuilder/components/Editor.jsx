@@ -4,12 +4,14 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useCallback } from 'react';
 import { useDrop } from 'react-dnd';
-import Monaco from '@monaco-editor/react';
-import { Button, Box } from '@chakra-ui/react';
+import {
+  Button, Box, Stack, IconButton, Text, Switch,
+} from '@chakra-ui/react';
 import { useMutation } from 'redux-query-react';
 import { CopyBlock, dracula } from 'react-code-blocks';
+import { AiOutlineSave } from 'react-icons/ai';
+import { BsDownload } from 'react-icons/bs';
 import { saveCodeMutation } from '../Store/queries';
-
 import { ItemTypes } from './ItemTypes';
 import {
   insertNode, getNodeByType, getCodeFromNode, getCodeFromNodeForDownload,
@@ -87,14 +89,28 @@ export default function Editor(props) {
 
   return (
     <>
-      <Button style={{ marginLeft: '35%' }} onClick={() => setIsEditorView(!isEditorView)}>Toggle View</Button>
-      <Button style={{ marginLeft: '35%' }} onClick={handleDownload}>Download</Button>
+      <Stack direction="row" bg="white" spacing="4" my="4" p="2" boxShadow="xl" alignItems="center" justifyContent="space-between">
+        <Stack direction="row" alignItems="center" fontWeight="semibold" fontSize="md" mx="4">
+          <Text>
+            Editor
+          </Text>
+          <Switch size="lg" onChange={() => setIsEditorView(!isEditorView)} value={isEditorView} />
+          <Text>
+            Web preview
+          </Text>
+        </Stack>
+        <Stack direction="row">
+          <IconButton icon={<BsDownload />} />
+          <Button onClick={() => onSave(getCodeFromNode(node, ''))} rightIcon={<AiOutlineSave />}>Save</Button>
+        </Stack>
+      </Stack>
+
       {isEditorView ? (
         <div id="1" greedy={false} ref={drop} role="Dustbin" style={{ ...style, backgroundColor }}>
           {getElementBin(node)}
         </div>
       ) : <div style={{ ...style, backgroundColor }} dangerouslySetInnerHTML={{ __html: getCodeFromNode(node, '') }} />}
-      <Button style={{ float: 'right' }} onClick={() => onSave(getCodeFromNode(node, ''))}>Save</Button>
+
       <Box maxH="20vh" overflowY="scroll">
         <CopyBlock
           text={beautifyHtml(getCodeFromNode(node, ''))}
