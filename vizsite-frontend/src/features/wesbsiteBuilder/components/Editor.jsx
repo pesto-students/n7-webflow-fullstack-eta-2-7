@@ -4,7 +4,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useCallback } from 'react';
 import { useDrop } from 'react-dnd';
-import Monaco from '@monaco-editor/react';
 import { Button, Box } from '@chakra-ui/react';
 import { useMutation } from 'redux-query-react';
 import { CopyBlock, dracula } from 'react-code-blocks';

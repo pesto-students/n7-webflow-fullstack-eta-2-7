@@ -418,3 +418,17 @@ export const getCodeFromNodeForDownload = (node, result, style) => {
     style,
   };
 };
+
+export const deleteNodeFromTree = (node, value) => {
+  if (node?.children) {
+    for (let i = 0; i < node?.children?.length; i++) {
+      const filtered = node?.children?.filter((f) => f.value === value);
+      if (filtered && filtered.length > 0) {
+        node.children = node.children.filter((f) => f.value !== value);
+        return node;
+      }
+      node = deleteNodeFromTree(node.children[i], value);
+    }
+  }
+  return node;
+};
