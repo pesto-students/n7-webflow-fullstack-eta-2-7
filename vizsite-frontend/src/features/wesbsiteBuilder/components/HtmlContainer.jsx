@@ -26,6 +26,9 @@ const elements = [
   { title: 'ListItem', type: 'li', icon: <ListItemIcon />, elementType: 'ELEMENT' },
   { title: 'Input', type: 'input', icon: <InputIcon />, elementType: 'ELEMENT' },
   { title: 'Table', type: 'table', icon: <BsTable size="32px" />, elementType: 'ELEMENT' },
+  { title: 'Table Header', type: 'tableHeader', icon: <BsTable size="32px" />, elementType: 'ELEMENT' },
+  { title: 'Table Row', type: 'tableRow', icon: <BsTable size="32px" />, elementType: 'ELEMENT' },
+  { title: 'Table Data Cell', type: 'tableData', icon: <BsTable size="32px" />, elementType: 'ELEMENT' },
 ];
 
 const components = [

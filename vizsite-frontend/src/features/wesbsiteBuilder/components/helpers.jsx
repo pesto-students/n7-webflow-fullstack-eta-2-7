@@ -12,6 +12,9 @@ export const getNodeByType = (type) => {
     ul: { type: 'ul', label: 'List' },
     li: { type: 'li', label: 'List Item', betweenTags: 'Sample Text' },
     table: { type: 'table', label: 'Table' },
+    tableHeader: { type: 'th', label: 'Table Header' },
+    tableRow: { type: 'tr', label: 'Table Row' },
+    tableData: { type: 'td', label: 'Table Data Cell' },
     grid: {
       type: 'div',
       label: 'Grid',
