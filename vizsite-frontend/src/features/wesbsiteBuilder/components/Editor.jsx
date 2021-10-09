@@ -1,17 +1,18 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/button-has-type */
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useCallback } from 'react';
 import { useDrop } from 'react-dnd';
+import {
+  Button, Box, Stack, IconButton, Text, Switch,
+} from '@chakra-ui/react';
 import { useMutation } from 'redux-query-react';
 import { useParams } from 'react-router-dom';
 import { CopyBlock, dracula } from 'react-code-blocks';
 import { AiOutlineSave } from 'react-icons/ai';
 import { BsDownload } from 'react-icons/bs';
-import {
-  Button, Stack, IconButton, Text, Switch, Box,
-} from '@chakra-ui/react';
 import { saveCodeMutation } from '../Store/queries';
 import { ItemTypes } from './ItemTypes';
 import {
@@ -40,6 +41,7 @@ export default function Editor(props) {
   const {
     node, setNode, greedy, fileId, handleCurrentNodeSelected, fileLink,
   } = props;
+  console.log('node....', node);
   const { id } = useParams();
   const [{ isPending, isFinished }, saveCode] = useMutation((data) => saveCodeMutation(data, node, fileId, id));
   const onSave = (data) => {
@@ -102,7 +104,7 @@ export default function Editor(props) {
           </Text>
         </Stack>
         <Stack direction="row">
-          <IconButton icon={<BsDownload />} />
+          <a href={fileLink}><IconButton icon={<BsDownload />} /></a>
           <Button onClick={() => onSave(getCodeFromNode(node, ''))} rightIcon={<AiOutlineSave />}>Save</Button>
         </Stack>
       </Stack>
