@@ -12,11 +12,11 @@ import { useParams } from 'react-router-dom';
 import reactToCSS from 'react-style-object-to-css';
 import HtmlContainer from './components/HtmlContainer';
 import CssConatainer from './components/CssConatainer';
-import Editor from './components/Editor';
 import ViewerContainer from './components/ViewerContainer';
 import Hirearchy from './components/HirearchyViewer';
 import { getProjectByIdQuery } from './Store/queries';
 import { getProject } from './Store/selectors';
+import Editor from './components/Editor';
 
 const views = [{ icon: <AiTwotoneBuild />, label: 'build' }, { icon: <CgListTree />, label: 'hirearchy' }];
 

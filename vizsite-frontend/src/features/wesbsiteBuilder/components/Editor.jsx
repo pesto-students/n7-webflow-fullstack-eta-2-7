@@ -4,19 +4,14 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useCallback } from 'react';
 import { useDrop } from 'react-dnd';
-import { Button, Box } from '@chakra-ui/react';
 import { useMutation } from 'redux-query-react';
 import { useParams } from 'react-router-dom';
 import { CopyBlock, dracula } from 'react-code-blocks';
-import { saveCodeMutation } from '../Store/queries';
-
-import {
-  Button, Box, Stack, IconButton, Text, Switch,
-} from '@chakra-ui/react';
-import { useMutation } from 'redux-query-react';
-import { CopyBlock, dracula } from 'react-code-blocks';
 import { AiOutlineSave } from 'react-icons/ai';
 import { BsDownload } from 'react-icons/bs';
+import {
+  Button, Stack, IconButton, Text, Switch, Box,
+} from '@chakra-ui/react';
 import { saveCodeMutation } from '../Store/queries';
 import { ItemTypes } from './ItemTypes';
 import {
