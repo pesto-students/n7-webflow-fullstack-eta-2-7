@@ -10,6 +10,14 @@ import { useParams } from 'react-router-dom';
 import { CopyBlock, dracula } from 'react-code-blocks';
 import { saveCodeMutation } from '../Store/queries';
 
+import {
+  Button, Box, Stack, IconButton, Text, Switch,
+} from '@chakra-ui/react';
+import { useMutation } from 'redux-query-react';
+import { CopyBlock, dracula } from 'react-code-blocks';
+import { AiOutlineSave } from 'react-icons/ai';
+import { BsDownload } from 'react-icons/bs';
+import { saveCodeMutation } from '../Store/queries';
 import { ItemTypes } from './ItemTypes';
 import {
   insertNode, getNodeByType, getCodeFromNode, getCodeFromNodeForDownload,
@@ -79,16 +87,36 @@ export default function Editor(props) {
     );
   }
 
+  const handleDownload = useCallback(
+    () => {
+      const code = getCodeFromNodeForDownload(node, '', '');
+    },
+    [node],
+  );
+
   return (
     <>
-      <Button style={{ marginLeft: '35%' }} onClick={() => setIsEditorView(!isEditorView)}>Toggle View</Button>
-      <a href={fileLink}><Button style={{ marginLeft: '35%' }}>Download</Button></a>
+      <Stack direction="row" bg="white" spacing="4" my="4" p="2" boxShadow="xl" alignItems="center" justifyContent="space-between">
+        <Stack direction="row" alignItems="center" fontWeight="semibold" fontSize="md" mx="4">
+          <Text>
+            Editor
+          </Text>
+          <Switch size="lg" onChange={() => setIsEditorView(!isEditorView)} value={isEditorView} />
+          <Text>
+            Web preview
+          </Text>
+        </Stack>
+        <Stack direction="row">
+          <IconButton icon={<BsDownload />} />
+          <Button onClick={() => onSave(getCodeFromNode(node, ''))} rightIcon={<AiOutlineSave />}>Save</Button>
+        </Stack>
+      </Stack>
+
       {isEditorView ? (
         <div id="1" greedy={false} ref={drop} role="Dustbin" style={{ ...style, backgroundColor }}>
           {getElementBin(node)}
         </div>
       ) : <div style={{ ...style, backgroundColor }} dangerouslySetInnerHTML={{ __html: getCodeFromNode(node, '') }} />}
-      <Button style={{ float: 'right' }} onClick={() => onSave(getCodeFromNode(node, ''))}>Save</Button>
       <Box maxH="20vh" overflowY="scroll">
         <CopyBlock
           text={beautifyHtml(getCodeFromNode(node, ''))}

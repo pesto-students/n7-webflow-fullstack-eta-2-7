@@ -33,5 +33,7 @@ module.exports = {
     'template-curly-spacing': ['error', 'never'],
     'react/no-array-index-key': 0,
     'linebreak-style': 0,
+    'no-console': 0,
+    'react/no-danger': 0,
   },
 };

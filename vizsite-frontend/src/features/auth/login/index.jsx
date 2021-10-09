@@ -5,6 +5,7 @@ import {
   SimpleGrid,
   Text,
   VisuallyHidden,
+  Badge,
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
@@ -18,8 +19,8 @@ import ProductDescription from '../components/ProductDescription';
 const Login = () => {
   const history = useHistory();
   const auth = useAuth();
-  const { user, signinWithGoogle } = auth;
-  if (user?.name) {
+  const { user, signinWithGoogle, signinWithEmail } = auth;
+  if (user?.uid) {
     history.push('/app/projects');
   }
   return (
@@ -33,14 +34,14 @@ const Login = () => {
             <Text as="span">Don&apos;t have an account?</Text>
           </Text>
           <Card>
-            <LoginForm />
+            <LoginForm signinWithEmail={signinWithEmail} />
             <DividerWithText mt="6">or continue with</DividerWithText>
             <SimpleGrid mt="6" columns={3} spacing="3">
               <Button color="currentColor" variant="outline">
                 <VisuallyHidden>Login with Facebook</VisuallyHidden>
                 <FaFacebook />
               </Button>
-              <Button color="currentColor" variant="outline" onClick={signinWithGoogle}>
+              <Button color="red" variant="outline" onClick={signinWithGoogle}>
                 <VisuallyHidden>Login with Google</VisuallyHidden>
                 <FaGoogle />
               </Button>
@@ -49,6 +50,9 @@ const Login = () => {
                 <FaGithub />
               </Button>
             </SimpleGrid>
+            <Badge colorScheme="purple" mt="8">
+              Only google and guest login is available for now.
+            </Badge>
           </Card>
         </Box>
       </>
