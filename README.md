@@ -1,5 +1,9 @@
 # Vizsite
 
+### Guest login details
+#### email : test@vizsite.com
+#### password : test@123
+
 ### User types
 
 1. **Registered users** -  people who have registered and can edit a website 
