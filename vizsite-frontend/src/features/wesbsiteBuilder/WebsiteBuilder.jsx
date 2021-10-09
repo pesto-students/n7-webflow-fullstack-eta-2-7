@@ -91,6 +91,8 @@ export default function WebsiteBuilder() {
         <Box flex={1} boxShadow="lg" bg="white" mt="2" p="2">
           {view === 'build' ? <HtmlContainer /> : <Hirearchy node={node} setNode={setNode} />}
         </Box>
+        {view === 'build'
+        && (
         <Box flex={3} p="2">
           <Editor
             node={node}
@@ -99,6 +101,7 @@ export default function WebsiteBuilder() {
             handleCurrentNodeSelected={handleCurrentNodeSelected}
           />
         </Box>
+        )}
         <Box flex={1} boxShadow="lg" bg="white" mt="2" p="2" overflowY="scroll">
           <CssConatainer
             selectedNodeStylesObj={currentStyleObj || {}}
