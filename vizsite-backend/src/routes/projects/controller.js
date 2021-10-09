@@ -78,7 +78,8 @@ async function createFile(fileName) {
 
 export const getAllProjectsController = async (req, res) => {
   const { uid } = req.user;
-  const result = await req.db.collection(FIREBASE_DB_PROJECT).get({ uid });
+  console.log(uid);
+  const result = await req.db.collection(FIREBASE_DB_PROJECT).where('uid', '==', uid).get();
   const resultArray = [];
   result.forEach((doc) => {
     resultArray.push(doc.data());
