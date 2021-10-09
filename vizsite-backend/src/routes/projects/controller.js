@@ -126,6 +126,7 @@ export const deleteProjectController = async (req, res) => {
 
 export const saveCodeController = async (req, res) => {
   const { user, body } = req;
+  await req.db.collection(FIREBASE_DB_SITE).doc(body.siteId).update({ siteObj: body.node });
   updateFile(body.fileId, user.uid, body.code);
   res.status(STATUS_CODE_CREATED).json({ data: {} });
 };

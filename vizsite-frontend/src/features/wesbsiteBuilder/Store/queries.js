@@ -6,9 +6,11 @@ export const getProjectByIdQuery = (id) => ({
   },
 });
 
-export const saveCodeMutation = (data, fileId) => ({
+export const saveCodeMutation = (data, node, fileId, siteId) => ({
   url: `${process.env.REACT_APP_API_BASE_URL}/projects/saveCode`,
-  body: { code: data, fileId },
+  body: {
+    code: data, node, fileId, siteId,
+  },
   transform: (responseBody) => {
     const responseData = responseBody ? responseBody.data : {};
     return { savedCode: responseData };

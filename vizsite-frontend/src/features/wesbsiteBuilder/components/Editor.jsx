@@ -6,6 +6,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useDrop } from 'react-dnd';
 import { Button, Box } from '@chakra-ui/react';
 import { useMutation } from 'redux-query-react';
+import { useParams } from 'react-router-dom';
 import { CopyBlock, dracula } from 'react-code-blocks';
 import { saveCodeMutation } from '../Store/queries';
 
@@ -34,11 +35,12 @@ const style = {
 
 export default function Editor(props) {
   const {
-    node, setNode, greedy, fileId, handleCurrentNodeSelected,
+    node, setNode, greedy, fileId, handleCurrentNodeSelected, fileLink,
   } = props;
-  const [{ isPending, isFinished }, saveCode] = useMutation((data) => saveCodeMutation(data, fileId));
+  const { id } = useParams();
+  const [{ isPending, isFinished }, saveCode] = useMutation((data) => saveCodeMutation(data, node, fileId, id));
   const onSave = (data) => {
-    saveCode(data);
+    saveCode(data, node, fileId, id);
   };
   const [isEditorView, setIsEditorView] = useState(true);
   const [{ isOver, isOverCurrent }, drop] = useDrop(() => ({
@@ -77,17 +79,10 @@ export default function Editor(props) {
     );
   }
 
-  const handleDownload = useCallback(
-    () => {
-      const code = getCodeFromNodeForDownload(node, '', '');
-    },
-    [node],
-  );
-
   return (
     <>
       <Button style={{ marginLeft: '35%' }} onClick={() => setIsEditorView(!isEditorView)}>Toggle View</Button>
-      <Button style={{ marginLeft: '35%' }} onClick={handleDownload}>Download</Button>
+      <a href={fileLink}><Button style={{ marginLeft: '35%' }}>Download</Button></a>
       {isEditorView ? (
         <div id="1" greedy={false} ref={drop} role="Dustbin" style={{ ...style, backgroundColor }}>
           {getElementBin(node)}

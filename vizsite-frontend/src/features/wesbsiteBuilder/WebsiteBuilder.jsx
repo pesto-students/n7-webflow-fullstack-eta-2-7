@@ -27,12 +27,13 @@ export default function WebsiteBuilder() {
   const [view, setView] = React.useState(views[0].label);
   const [node, setNode] = useState({ value: '1', type: 'body', label: 'root' });
   const [fileId, setFileId] = useState();
-  console.log(fileId);
+  const [fileLink, setFileLink] = useState();
 
   useEffect(() => {
     if (project) {
       setNode(project.site.siteObj);
       setFileId(project.site.fileId);
+      setFileLink(project.data.fileLink);
     }
   }, [project]);
   const [selectedNode, setSelectedNode] = useState({});
@@ -98,6 +99,7 @@ export default function WebsiteBuilder() {
             node={node}
             setNode={setNode}
             fileId={fileId}
+            fileLink={fileLink}
             handleCurrentNodeSelected={handleCurrentNodeSelected}
           />
         </Box>
